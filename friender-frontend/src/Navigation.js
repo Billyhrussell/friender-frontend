@@ -78,7 +78,7 @@ function Navigation({ logout }) {
   return (
     <div>
       <Navbar color="white" light expand="md">
-        <NavbarBrand href="/" style={{ color: "blue" }}>Jobly</NavbarBrand>
+        <NavbarBrand href="/" style={{ color: "blue" }}>Friender</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto" navbar>
