@@ -39,15 +39,6 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
     return resp.token;
   }
 
-  static async signup(data){
-      const resp = await this.request("signup", data, "post");
-
-      return resp.token;
-    }
-
-
-
-
   static async getAllUsers(){
     const resp = await this.request("users");
     return resp.users;

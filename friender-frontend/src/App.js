@@ -21,7 +21,6 @@ function App() {
         FrienderApi.token = token;
         try{
           let user = jwt_decode(token);
-          debugger
           const userData = await FrienderApi.getOneUser(user.username);
           setCurrentUser(userData);
           setIsLoading(false);

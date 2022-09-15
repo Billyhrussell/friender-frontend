@@ -63,7 +63,7 @@ function SignupForm({ register }) {
     try {
       const response = await axios({
         method: "post",
-        url: "/signup",
+        url: "http://localhost:5001/signup",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
