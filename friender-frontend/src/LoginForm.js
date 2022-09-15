@@ -37,7 +37,7 @@ function LoginForm({ login }) {
     await login(formData);
     setFormData(initial);
     console.log("CURR USER:", currentUser);
-    if (currentUser) navigate("/");
+    if (currentUser) navigate("/users");
     if (!currentUser) setIsBadLogin(false);
   }
 

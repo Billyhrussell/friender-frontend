@@ -11,7 +11,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
  */
 
  class FrienderApi {
-  static token = "";
+  static token = null;
 
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);

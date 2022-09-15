@@ -12,42 +12,43 @@ const GLOBAL_TOKEN = "token";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(localStorage.getItem(GLOBAL_TOKEN) || null);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(function getCurrentUser(){
-    async function getUser(token){
-      if(token){
+  useEffect(function getCurrentUser() {
+    async function getUser() {
+      if (token) {
         FrienderApi.token = token;
-        try{
+        try {
           let user = jwt_decode(token);
           const userData = await FrienderApi.getOneUser(user.username);
           setCurrentUser(userData);
           setIsLoading(false);
-        }catch (err) {
+        } catch (err) {
           console.error("ERROR: ", err);
         }
-      }else{
+      } else {
         setCurrentUser(null);
         setIsLoading(false);
       }
     }
-    getUser(token);
-  }, [token])
+    getUser();
+  }, [token]);
 
-  function Loading(){
+  function Loading() {
 
-    return(
+    return (
       <h1 className="loading">Loading...</h1>
-    )
+    );
   }
 
-  if(isLoading) return (<Loading />);
+  if (isLoading) return (<Loading />);
 
   async function login(loginData) {
     try {
       let tokenData = await FrienderApi.login(loginData);
       setToken(tokenData);
+      setIsLoading(true);
       localStorage.setItem(GLOBAL_TOKEN, tokenData);
     } catch (err) {
       console.error("ERROR: ", err);
@@ -73,7 +74,7 @@ function App() {
 
 
   return (
-<userContext.Provider value={{ currentUser, setCurrentUser }}>
+    <userContext.Provider value={{ currentUser, setCurrentUser }}>
       <div className="App">
         <BrowserRouter>
           <Navigation logout={logout} />

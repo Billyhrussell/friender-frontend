@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import userContext from "./userContext";
+import FrienderApi from "./_api";
 
 
 /** Displays main homepage for Jobly app

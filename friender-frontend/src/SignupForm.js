@@ -67,6 +67,9 @@ function SignupForm({ register }) {
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
+      setfData(initial)
+      setSelectedFile(null)
+      alert("Your account has been successfully created!")
     } catch(error) {
       console.log(error)
     }
@@ -175,9 +178,9 @@ function SignupForm({ register }) {
             id="image"
             name="image"
             type="file"
+            onChange={handleFileSelect}
             className="form-control"
             placeholder="Enter Image"
-            onChange={handleFileSelect}
             aria-label="Image"
           />
         </div>
