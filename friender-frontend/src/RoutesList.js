@@ -2,6 +2,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import userContext from './userContext';
 import React, { useContext } from "react";
 import Homepage from './Homepage';
+import Login from './LoginForm'
+import Signup from './SignupForm'
 
 
 function RoutesList({ login, signup }) {
@@ -23,7 +25,7 @@ function RoutesList({ login, signup }) {
 
           <Route
             path="/signup"
-            element={<SignUp register={signup} />}
+            element={<Signup register={signup} />}
           />
         </>
       }

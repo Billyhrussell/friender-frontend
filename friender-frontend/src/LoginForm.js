@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "./LoginForm.css";
+
 import userContext from "./userContext";
 
 /** Form for logging in.
@@ -33,6 +33,7 @@ function LoginForm({ login }) {
   /** Call parent function and clear form. */
   async function handleSubmit(evt) {
     evt.preventDefault();
+    debugger
     await login(formData);
     setFormData(initial);
     console.log("CURR USER:", currentUser);
@@ -71,12 +72,12 @@ function LoginForm({ login }) {
           />
         </div>
         {!isBadLogin &&
-          <div class="alert alert-danger" role="alert">
+          <div className="alert alert-danger" role="alert">
             Incorrect Username or Password
           </div>
         }
         <div className="mb-3">
-          <button className="btn btn-primary">
+          <button className="btn btn-primary" onClick={handleSubmit}>
             Submit
           </button>
         </div>

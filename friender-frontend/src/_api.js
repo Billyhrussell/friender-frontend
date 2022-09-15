@@ -31,13 +31,15 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
     }
   }
 
-  static async login(username, password){
-    const resp = await this.request("login", {username, password }, "post");
+  static async login(data){
+    debugger
+    const resp = await this.request("login", data, "post");
+
     return resp.token;
   }
 
-  static async signup(username, password, name, hobbies,
-    interests, zipcode, radius){
+  static async signup({username, password, name, hobbies,
+    interests, zipcode, radius}){
       const resp = await this.request("signup", {username, password, name,
         hobbies,interests, zipcode, radius}, "post");
 

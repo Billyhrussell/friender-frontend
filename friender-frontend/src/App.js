@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+
 import FrienderApi from './_api';
 import React, { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
@@ -44,9 +44,9 @@ function App() {
 
   if(isLoading) return (<Loading />);
 
-  async function login({ username, password }) {
+  async function login(loginData) {
     try {
-      let tokenData = await FrienderApi.login(username, password);
+      let tokenData = await FrienderApi.login(loginData);
       setToken(tokenData);
       localStorage.setItem(GLOBAL_TOKEN, tokenData);
     } catch (err) {
@@ -64,8 +64,8 @@ function App() {
   async function signup({ username, password, name, hobbies,
     interests, zipcode, radius}) {
     try {
-      let tokenData = await FrienderApi.createNewUser(username, password, name,
-        hobbies, interests, zipcode, radius);
+      let tokenData = await FrienderApi.signup({username, password, name,
+        hobbies, interests, zipcode, radius});
       setToken(tokenData);
       localStorage.setItem(GLOBAL_TOKEN, tokenData);
     } catch (err) {

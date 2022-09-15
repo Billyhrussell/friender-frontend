@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "./SignUpForm.css"
+
 import userContext from "./userContext";
 
 /** Form for adding.
@@ -14,13 +14,21 @@ import userContext from "./userContext";
  * RoutesList -> SignUpForm
  */
 
-function SignUpForm({ register }) {
+function SignupForm({ register }) {
   const { currentUser } = useContext(userContext);
   const initial =
-    { username: "", password: "", fullName:"", hobbies: "", interests:"", zipcode:"", radius:"", image:null};
+    { username: "",
+    password: "",
+    fullName:"",
+    hobbies: "",
+    interests:"",
+    zipcode:"",
+    radius:""
+  }
   const navigate = useNavigate();
   // const [file, setFile] = useState(null)
   const [formData, setFormData] = useState(initial);
+  const [file, setFile] = useState()
   const [isBadLogin, setIsBadLogin] = useState(true);
 
   /** Update form input. */
@@ -30,6 +38,7 @@ function SignUpForm({ register }) {
       ...fData,
       [name]: value,
     }));
+// setFile(evt.target.files[0])
   }
 
   /** Call parent function and clear form. */
@@ -142,13 +151,12 @@ function SignUpForm({ register }) {
             className="form-control"
             placeholder="Enter Image"
             onChange={handleChange}
-            value={formData.image}
             aria-label="Image"
           />
         </div>
 
         {!isBadLogin &&
-          <div class="alert alert-danger" role="alert">
+          <div className="alert alert-danger" role="alert">
             All fields must be filled out
           </div>
         }
@@ -163,4 +171,4 @@ function SignUpForm({ register }) {
   );
 }
 
-export default SignUpForm;
+export default SignupForm;
