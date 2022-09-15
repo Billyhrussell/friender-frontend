@@ -26,7 +26,8 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
       console.error("API Error:", err.response);
-      let message = err.response.data.error.message;
+      debugger;
+      let message = err.message;
       throw Array.isArray(message) ? message : [message];
     }
   }
@@ -38,10 +39,8 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
     return resp.token;
   }
 
-  static async signup({username, password, name, hobbies,
-    interests, zipcode, radius}){
-      const resp = await this.request("signup", {username, password, name,
-        hobbies,interests, zipcode, radius}, "post");
+  static async signup(data){
+      const resp = await this.request("signup", data, "post");
 
       return resp.token;
     }

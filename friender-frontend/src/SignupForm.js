@@ -43,6 +43,7 @@ function SignupForm({ register }) {
 
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
+    console.log("gethere")
     evt.preventDefault();
     register(formData);
     setFormData(initial);

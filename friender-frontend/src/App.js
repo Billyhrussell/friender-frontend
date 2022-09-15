@@ -21,7 +21,8 @@ function App() {
         FrienderApi.token = token;
         try{
           let user = jwt_decode(token);
-          const userData = await FrienderApi.getUserInfo(user.username);
+          debugger
+          const userData = await FrienderApi.getOneUser(user.username);
           setCurrentUser(userData);
           setIsLoading(false);
         }catch (err) {
@@ -61,11 +62,9 @@ function App() {
     localStorage.removeItem(GLOBAL_TOKEN);
   }
 
-  async function signup({ username, password, name, hobbies,
-    interests, zipcode, radius}) {
+  async function signup(data) {
     try {
-      let tokenData = await FrienderApi.signup({username, password, name,
-        hobbies, interests, zipcode, radius});
+      let tokenData = await FrienderApi.signup(data);
       setToken(tokenData);
       localStorage.setItem(GLOBAL_TOKEN, tokenData);
     } catch (err) {
