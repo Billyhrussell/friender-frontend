@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"
 
 import userContext from "./userContext";
 
@@ -15,6 +16,8 @@ import userContext from "./userContext";
  */
 
 function SignupForm({ register }) {
+
+  const [selectedFile, setSelectedFile] = useState(null);
   const { currentUser } = useContext(userContext);
   const initial =
     { username: "",
@@ -27,14 +30,14 @@ function SignupForm({ register }) {
   }
   const navigate = useNavigate();
   // const [file, setFile] = useState(null)
-  const [formData, setFormData] = useState(initial);
-  const [file, setFile] = useState()
-  const [isBadLogin, setIsBadLogin] = useState(true);
+  const [fData, setfData] = useState(initial);
+  // const [file, setFile] = useState()
+  // const [isBadLogin, setIsBadLogin] = useState(true);
 
   /** Update form input. */
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setFormData(fData => ({
+    setfData(fData => ({
       ...fData,
       [name]: value,
     }));
@@ -42,14 +45,37 @@ function SignupForm({ register }) {
   }
 
   /** Call parent function and clear form. */
-  function handleSubmit(evt) {
-    console.log("gethere")
+  const handleSubmit = async function (evt) {
+
     evt.preventDefault();
-    register(formData);
-    setFormData(initial);
-    if(currentUser) navigate("/");
-    if(!currentUser) setIsBadLogin(false);
+
+    const formData = new FormData();
+
+    formData.append("username", fData.username)
+    formData.append("password", fData.password)
+    formData.append("fullName", fData.fullName)
+    formData.append("hobbies", fData.hobbies)
+    formData.append("interests", fData.interests)
+    formData.append("zipcode", fData.zipcode)
+    formData.append("radius", fData.radius)
+    formData.append("image", selectedFile)
+
+    try {
+      const response = await axios({
+        method: "post",
+        url: "/signup",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+    } catch(error) {
+      console.log(error)
+    }
   }
+
+  const handleFileSelect = (event) => {
+    setSelectedFile(event.target.files[0])
+  }
+
 
   return (
     <div className="signupPage">
@@ -64,7 +90,7 @@ function SignupForm({ register }) {
             className="form-control"
             placeholder="Enter username"
             onChange={handleChange}
-            value={formData.username}
+            value={fData.username}
             aria-label="Username"
           />
         </div>
@@ -76,7 +102,7 @@ function SignupForm({ register }) {
             className="form-control"
             placeholder="Enter password"
             onChange={handleChange}
-            value={formData.password}
+            value={fData.password}
             aria-label="Password"
             type="password"
           />
@@ -89,7 +115,7 @@ function SignupForm({ register }) {
             className="form-control"
             placeholder="Enter full name"
             onChange={handleChange}
-            value={formData.fullName}
+            value={fData.fullName}
             aria-label="Full Name"
           />
         </div>
@@ -101,7 +127,7 @@ function SignupForm({ register }) {
             className="form-control"
             placeholder="Enter Hobbies"
             onChange={handleChange}
-            value={formData.hobbies}
+            value={fData.hobbies}
             aria-label="Hobbies"
           />
         </div>
@@ -113,7 +139,7 @@ function SignupForm({ register }) {
             className="form-control"
             placeholder="Enter Interests"
             onChange={handleChange}
-            value={formData.interests}
+            value={fData.interests}
             aria-label="Interests"
           />
         </div>
@@ -125,7 +151,7 @@ function SignupForm({ register }) {
             className="form-control"
             placeholder="Enter Zipcode"
             onChange={handleChange}
-            value={formData.zipcode}
+            value={fData.zipcode}
             aria-label="Zipcode"
           />
         </div>
@@ -138,7 +164,7 @@ function SignupForm({ register }) {
             className="form-control"
             placeholder="Enter Radius"
             onChange={handleChange}
-            value={formData.radius}
+            value={fData.radius}
             aria-label="Radius"
           />
         </div>
@@ -151,16 +177,16 @@ function SignupForm({ register }) {
             type="file"
             className="form-control"
             placeholder="Enter Image"
-            onChange={handleChange}
+            onChange={handleFileSelect}
             aria-label="Image"
           />
         </div>
-
+{/*
         {!isBadLogin &&
           <div className="alert alert-danger" role="alert">
             All fields must be filled out
           </div>
-        }
+        } */}
         <div>
           <button className="btn btn-primary">
             Submit
