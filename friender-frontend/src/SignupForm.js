@@ -1,10 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import userContext from "./userContext";
-
-const GLOBAL_TOKEN = "token";
 /** Form for adding.
  *
  * Props:
@@ -69,8 +66,9 @@ function SignupForm({ updateToken }) {
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
+
       updateToken(response.data.token);
-      localStorage.setItem(GLOBAL_TOKEN, response.data.token)
+
       setfData(initial);
       setSelectedFile(null);
       alert("Your account has been successfully created!");
@@ -83,8 +81,6 @@ function SignupForm({ updateToken }) {
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0]);
   };
-
-
 
 
   return (

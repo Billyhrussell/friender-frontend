@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 
 import FrienderApi from './_api';
 import React, { useState, useEffect } from "react";
@@ -65,16 +64,18 @@ function App() {
 
   async function updateToken(tokenData){
     setToken(tokenData)
+    localStorage.setItem(GLOBAL_TOKEN, tokenData)
+
   }
-  async function signup(data) {
-    try {
-      let tokenData = await FrienderApi.signup(data);
-      setToken(tokenData);
-      localStorage.setItem(GLOBAL_TOKEN, tokenData);
-    } catch (err) {
-      console.error("ERROR: ", err);
-    }
-  }
+  // async function signup(data) {
+  //   try {
+  //     let tokenData = await FrienderApi.signup(data);
+  //     setToken(tokenData);
+  //     localStorage.setItem(GLOBAL_TOKEN, tokenData);
+  //   } catch (err) {
+  //     console.error("ERROR: ", err);
+  //   }
+  // }
 
 
   return (

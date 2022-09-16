@@ -52,6 +52,10 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
     return resp.message
   }
 
+  static async dislikeOneUser(username){
+    const resp = await this.request(`users/${username}/dislike`, {}, "post");
+    return resp.message
+  }
  }
 
  export default FrienderApi;

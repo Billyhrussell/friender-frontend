@@ -3,10 +3,13 @@ import {useEffect, useState} from 'react'
 import FrienderApi from './_api';
 import Loading from './Loading';
 import Button from './Button';
+import { useNavigate } from "react-router-dom";
 
 function UserDetail(){
   const {username} = useParams();
   const [user, setUser] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(function userInfo() {
     async function getUserInfo() {
@@ -21,8 +24,14 @@ function UserDetail(){
   },[username]);
 
 
-  async function likeUser(username){
+  async function likeUser(){
     await FrienderApi.likeOneUser(username);
+    navigate("/users")
+  }
+
+  async function dislikeUser(){
+    await FrienderApi.dislikeOneUser(username);
+    navigate("/users")
   }
 
 
@@ -37,7 +46,7 @@ function UserDetail(){
 
       <h4>Hobbies: {user.hobbies}</h4>
       <h4>interests: {user.interests}</h4>
-      <Button username={username} like={() => likeUser} />
+      <Button like={likeUser} dislike={dislikeUser} />
     </div>
   )
 }
