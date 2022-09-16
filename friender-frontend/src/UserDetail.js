@@ -29,8 +29,16 @@ function UserDetail({cantfind}){
 
 
   async function likeUser(){
-    await FrienderApi.likeOneUser(username);
+    const resp = await FrienderApi.likeOneUser(username);
+    console.log("RESP", resp)
+  
+    if (resp === "It's a match!") {
+      alert ("It's a match!")
+      navigate("/matches")
+    }
+    else {
     navigate("/users")
+    }
   }
 
   async function dislikeUser(){
