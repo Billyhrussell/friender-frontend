@@ -13,7 +13,9 @@ import { NavLink as RRNavLink } from 'react-router-dom';
 
 import userContext from './userContext';
 
-/** Displays Navigation bar with links to homepage, company list, and job list
+/** Displays Navigation bar with links to homepage and
+ *  - when loggedIn: display link to show all users, link to logout
+ *  - when loggedOut: display link to login, signup
  *
  * Props:
  * - logout: function called from parent
@@ -29,7 +31,7 @@ function Navigation({ logout }) {
   const { currentUser } = useContext(userContext);
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-  
+
   console.log("current user in nav", currentUser)
   function loggedIn() {
     return (

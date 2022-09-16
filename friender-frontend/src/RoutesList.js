@@ -7,6 +7,13 @@ import Signup from './SignupForm'
 import UserList from './UserList';
 import UserDetail from './UserDetail'
 
+/** Site-wide routes
+ *
+ * Parts of site only visible when looged in.
+ *
+ * Visiting a non-existent route navigate to the homepage
+ * 
+ */
 
 function RoutesList({ login, updateToken }) {
   const { currentUser } = useContext(userContext);

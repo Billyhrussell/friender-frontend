@@ -17,10 +17,11 @@ import userContext from "./userContext";
 function LoginForm({ login }) {
   const { currentUser } = useContext(userContext);
   const initial = { username: "", password: "" };
-  const navigate = useNavigate();
   const [formData, setFormData] = useState(initial);
   const [isBadLogin, setIsBadLogin] = useState(true);
 
+  const navigate = useNavigate();
+  
   /** Update form input. */
   function handleChange(evt) {
     const { name, value } = evt.target;

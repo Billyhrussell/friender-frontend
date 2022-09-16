@@ -1,3 +1,4 @@
+/** Handles like/dislike of a user's profile */
 function Button({like, dislike}){
   return (
     <>

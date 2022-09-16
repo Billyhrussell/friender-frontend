@@ -5,12 +5,10 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
 /** API Class.
  *
  * Static class tying together methods used to get/send to to the API.
- * There shouldn't be any frontend-specific stuff here, and there shouldn't
- * be any API-aware stuff elsewhere in the frontend.
  *
  */
 
- class FrienderApi {
+class FrienderApi {
   static token = null;
 
   static async request(endpoint, data = {}, method = "get") {
@@ -32,30 +30,37 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
     }
   }
 
-  static async login(data){
+  // Individual API routes
+
+  /** Get token for login from username, password */
+  static async login(data) {
     const resp = await this.request("login", data, "post");
     return resp.token;
   }
 
-  static async getAllUsers(){
+  /** Get all users */
+  static async getAllUsers() {
     const resp = await this.request("users");
     return resp.users;
   }
 
-  static async getOneUser(username){
+  /** Get one user by username in params */
+  static async getOneUser(username) {
     const resp = await this.request(`users/${username}`);
     return resp.user;
   }
 
-  static async likeOneUser(username){
+  /** Like another user by their name in params */
+  static async likeOneUser(username) {
     const resp = await this.request(`users/${username}/like`, {}, "post");
-    return resp.message
+    return resp.message;
   }
 
-  static async dislikeOneUser(username){
+  /** Disike another user by their name in params */
+  static async dislikeOneUser(username) {
     const resp = await this.request(`users/${username}/dislike`, {}, "post");
-    return resp.message
+    return resp.message;
   }
- }
+}
 
- export default FrienderApi;
+export default FrienderApi;

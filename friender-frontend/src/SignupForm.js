@@ -9,6 +9,7 @@ import axios from "axios";
  *
  * State:
  * - formData
+ * - selectedFile
  *
  * RoutesList -> SignUpForm
  */
@@ -27,11 +28,10 @@ function SignupForm({ updateToken }) {
     zipcode: "",
     radius: ""
   };
-  const navigate = useNavigate();
   // const [file, setFile] = useState(null)
   const [fData, setfData] = useState(initial);
-  // const [file, setFile] = useState()
-  // const [isBadLogin, setIsBadLogin] = useState(true);
+
+  const navigate = useNavigate();
 
   /** Update form input. */
   function handleChange(evt) {
@@ -40,10 +40,9 @@ function SignupForm({ updateToken }) {
       ...fData,
       [name]: value,
     }));
-    // setFile(evt.target.files[0])
   }
 
-  /** Call parent function and clear form. */
+  /** Call parent function, submit metadata form with axios and clear form. */
   const handleSubmit = async function (evt) {
 
     evt.preventDefault();
@@ -78,6 +77,7 @@ function SignupForm({ updateToken }) {
     }
   };
 
+  /** Handle selecting file for form */
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0]);
   };

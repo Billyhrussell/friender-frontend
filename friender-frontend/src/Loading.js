@@ -1,4 +1,4 @@
-
+/** Simple component showing a loading state */
 function Loading(){
 
     return(

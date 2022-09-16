@@ -1,11 +1,13 @@
 import {useParams } from 'react-router-dom'
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useContext } from 'react'
 import FrienderApi from './_api';
 import Loading from './Loading';
 import Button from './Button';
 import { useNavigate } from "react-router-dom";
+import userContext from "./userContext";
 
 function UserDetail(){
+  const { currentUser } = useContext(userContext);
   const {username} = useParams();
   const [user, setUser] = useState(null);
   const [errors, setFormErrors] = useState([])
@@ -53,7 +55,12 @@ function UserDetail(){
 
       <h4>Hobbies: {user.hobbies}</h4>
       <h4>interests: {user.interests}</h4>
+      {user.username !== currentUser.username
+      ?
       <Button like={likeUser} dislike={dislikeUser} />
+      :
+      null
+      }
       </>
 }
     </div>

@@ -1,9 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import userContext from "./userContext";
-import FrienderApi from "./_api";
 
 
-/** Displays main homepage for Jobly app
+/** Displays main homepage for Friender app
  *
  * Props: none
  * State: none

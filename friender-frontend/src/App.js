@@ -6,8 +6,21 @@ import userContext from "./userContext";
 import { BrowserRouter } from "react-router-dom";
 import Navigation from "./Navigation";
 import RoutesList from './RoutesList';
+import Loading from './Loading';
 
 const GLOBAL_TOKEN = "token";
+
+/** Friender application.
+ *
+ * - currentUser: user obj from API. This is passed around via context
+ *  throughout app.
+ *
+ * - token: for logged in users, this is their authentication JWT.
+ * Is required to be set for most API calls;
+ * initially read from localStorage or set to null if there isn't one
+ *
+ * App -> RoutesList
+ */
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -35,15 +48,10 @@ function App() {
     getUser();
   }, [token]);
 
-  function Loading() {
-
-    return (
-      <h1 className="loading">Loading...</h1>
-    );
-  }
 
   if (isLoading) return (<Loading />);
 
+  /** Handles login. */
   async function login(loginData) {
     try {
       let tokenData = await FrienderApi.login(loginData);
@@ -55,28 +63,19 @@ function App() {
     }
   }
 
+  /** Handles site-wide logout */
   function logout() {
     setCurrentUser(null);
     setToken(null);
     FrienderApi.token = null;
     localStorage.removeItem(GLOBAL_TOKEN);
   }
-
+  /** Handles updating token outside of app.js */
   async function updateToken(tokenData){
     setToken(tokenData)
     localStorage.setItem(GLOBAL_TOKEN, tokenData)
 
   }
-  // async function signup(data) {
-  //   try {
-  //     let tokenData = await FrienderApi.signup(data);
-  //     setToken(tokenData);
-  //     localStorage.setItem(GLOBAL_TOKEN, tokenData);
-  //   } catch (err) {
-  //     console.error("ERROR: ", err);
-  //   }
-  // }
-
 
   return (
     <userContext.Provider value={{ currentUser, setCurrentUser }}>
