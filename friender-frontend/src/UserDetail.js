@@ -5,7 +5,7 @@ import Loading from './Loading';
 import SwipeButton from './SwipeButton';
 import { useNavigate } from "react-router-dom";
 import userContext from "./userContext";
-import {Card, CardBody, CardTitle, CardText} from 'reactstrap'
+import {Card, CardBody, CardTitle, CardText, CardSubtitle, ListGroup, ListGroupItem} from 'reactstrap'
 import './UserDetail.css'
 
 function UserDetail({cantfind}){
@@ -52,7 +52,7 @@ function UserDetail({cantfind}){
   if (!user && errors.length < 1) return (<Loading />);
 
   return(
-    <>
+    <div className="container">
       {errors.length > 0
       ?
       <Navigate to={cantfind} />
@@ -67,11 +67,13 @@ function UserDetail({cantfind}){
           backgroundColor: 'rgba(36, 28, 9, 0.33)'
         }}>
         <CardBody >
-        <CardTitle className = 'cardTitle' tag='h5'
+        <CardTitle className = 'cardTitle' tag='h1'
         style={{padding: '2rem'}}>
-      <h2>{user.username}</h2>
-      <h4> {user.fullName} </h4>
+          {user.username}
       </CardTitle>
+      <CardSubtitle className='subtitle'>
+      {user.fullName}
+      </CardSubtitle>
         {user.image && <img src={user.image}
         alt = {user.fullName}
         style={{
@@ -82,8 +84,16 @@ function UserDetail({cantfind}){
       <CardText className='cardText'
       style={{padding: '2rem'}}
       >
-      <h4>Hobbies blahgkh garighi shgilhs ierlughsleuirg: {user.hobbies}</h4>
-      <h4>interests: {user.interests}</h4>
+        <ListGroup className='details' flush>
+          <ListGroupItem style={{backgroundColor:"rgba(3, 8, 9, 0.33)", color:'white'}}>
+            Hobbies  {user.hobbies}
+          </ListGroupItem>
+          <ListGroupItem style={{backgroundColor:"rgba(3, 8, 9, 0.33)", color:'white'}}>
+            Interests: {user.interests}
+          </ListGroupItem>
+
+        </ListGroup>
+
       </CardText>
       {user.username !== currentUser.username
       ?
@@ -95,7 +105,7 @@ function UserDetail({cantfind}){
       </Card>
       </>
 }
-    </>
+    </div>
   )
 }
 

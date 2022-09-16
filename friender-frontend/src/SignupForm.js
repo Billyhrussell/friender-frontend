@@ -17,6 +17,7 @@ import axios from "axios";
 function SignupForm({ updateToken }) {
 
   const [selectedFile, setSelectedFile] = useState(null);
+  const [isBadSignup, setIsBadSignup] = useState(false);
   // const { currentUser, setCurrentUser } = useContext(userContext);
   const initial =
   {
@@ -73,6 +74,7 @@ function SignupForm({ updateToken }) {
       alert("Your account has been successfully created!");
       navigate("/users");
     } catch (error) {
+      setIsBadSignup(true);
       console.log(error);
     }
   };
@@ -187,12 +189,12 @@ function SignupForm({ updateToken }) {
             aria-label="Image"
           />
         </div>
-        {/*
-        {!isBadLogin &&
+
+        {isBadSignup &&
           <div className="alert alert-danger" role="alert">
             All fields must be filled out
           </div>
-        } */}
+        }
         <div>
           <button className="btn btn-primary">
             Submit

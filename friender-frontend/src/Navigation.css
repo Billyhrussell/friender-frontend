@@ -10,3 +10,7 @@
     color: rgb(132, 46, 30);
 }
 
+button {
+    background: none;
+    border: none
+}

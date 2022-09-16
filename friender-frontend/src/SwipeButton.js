@@ -5,7 +5,7 @@ function SwipeButton({like, dislike}){
     <>
     <Button color="warning"
             onClick={like}
-            style={{margin:"1rem"}}>
+            style={{margin:"1rem", display:'inline',justifyContent:'center'}}>
     LIKE ME
   </Button>
     <Button color="danger" onClick={dislike}>
