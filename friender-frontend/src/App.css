@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background: url('../public/ogbg.jpg');
+  background-size: cover;
 }
 
 .App-logo {
@@ -22,6 +24,11 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+a:link{
+  text-decoration: none;
+  color: black;
 }
 
 .App-link {

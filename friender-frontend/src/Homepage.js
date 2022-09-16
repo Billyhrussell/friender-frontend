@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import userContext from "./userContext";
-
+import "./Homepage.css"
 
 /** Displays main homepage for Friender app
  *

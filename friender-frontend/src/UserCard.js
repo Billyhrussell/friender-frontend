@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import {Card, CardBody, CardTitle, CardText} from 'reactstrap'
 
 function UserCard({ user }) {
   const { username, fullName, hobbies, interests, zipcode, radius, image } = user;
@@ -7,12 +8,30 @@ function UserCard({ user }) {
   console.log(username, fullName, hobbies, interests, zipcode, radius, image);
 
   return (
-    <Link to={`/users/${username}`}>
-      <div>
-        {fullName}
-        {image && <img src={image}
-          alt={fullName} />}
-      </div>
+    <Link to={`/users/${username}`} style={{textDecoration:'none', color:'black'}}>
+      <Card
+          style={{
+          width: '12rem',
+          height: '14rem',
+          margin: '1rem',
+          padding: '0.5rem',
+        }}>
+        <CardBody>
+          <CardTitle tag="h5">
+            {username}
+          </CardTitle>
+
+          <div>
+            {image && <img src={image}
+              alt={fullName}
+                style={{
+                maxHeight: "150px",
+                width: "100%",
+              }}/>}
+          </div>
+
+        </CardBody>
+      </Card>
     </Link>
   );
 }
