@@ -12,7 +12,7 @@ import UserDetail from './UserDetail'
  * Parts of site only visible when looged in.
  *
  * Visiting a non-existent route navigate to the homepage
- * 
+ *
  */
 
 function RoutesList({ login, updateToken }) {
@@ -44,11 +44,13 @@ function RoutesList({ login, updateToken }) {
           <Route
             path="/users"
             element={<UserList/>}
+
           />
 
           <Route
             path="/users/:username"
-            element={<UserDetail/>}
+            element={<UserDetail cantfind="/users"/>}
+
           />
 
         </>

@@ -1,4 +1,4 @@
-import {useParams } from 'react-router-dom'
+import {Navigate, useParams } from 'react-router-dom'
 import {useEffect, useState, useContext } from 'react'
 import FrienderApi from './_api';
 import Loading from './Loading';
@@ -6,7 +6,7 @@ import Button from './Button';
 import { useNavigate } from "react-router-dom";
 import userContext from "./userContext";
 
-function UserDetail(){
+function UserDetail({cantfind}){
   const { currentUser } = useContext(userContext);
   const {username} = useParams();
   const [user, setUser] = useState(null);
@@ -20,7 +20,7 @@ function UserDetail(){
         const user = await FrienderApi.getOneUser(username);
         setUser(user);
       } catch(err){
-        console.log(err);
+        console.log("EDOR", err);
         setFormErrors(err)
       }
     }
@@ -45,7 +45,7 @@ function UserDetail(){
     <div>
       {errors.length > 0
       ?
-      errors
+      <Navigate to={cantfind} />
       :
       <>
       <h2>{user.username}</h2>

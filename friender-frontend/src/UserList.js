@@ -17,7 +17,7 @@ function UserList() {
 
   if (!users) return <Loading />;
 
-  
+
 
   console.log("INSIDE USER LIST")
   return (
