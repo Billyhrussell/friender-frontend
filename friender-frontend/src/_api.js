@@ -25,9 +25,9 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
     try {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
-      console.error("API Error:", err.response);
+      console.error("API Error:", err.response.data.message);
 
-      let message = err.message;
+      let message = err.response.data.message;
       throw Array.isArray(message) ? message : [message];
     }
   }

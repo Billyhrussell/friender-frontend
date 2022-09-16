@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 function UserDetail(){
   const {username} = useParams();
   const [user, setUser] = useState(null);
+  const [errors, setFormErrors] = useState([])
 
   const navigate = useNavigate();
 
@@ -18,6 +19,7 @@ function UserDetail(){
         setUser(user);
       } catch(err){
         console.log(err);
+        setFormErrors(err)
       }
     }
     getUserInfo();
@@ -35,10 +37,15 @@ function UserDetail(){
   }
 
 
-  if (!user) return (<Loading />);
+  if (!user && errors.length < 1) return (<Loading />);
 
   return(
     <div>
+      {errors.length > 0
+      ?
+      errors
+      :
+      <>
       <h2>{user.username}</h2>
       <h4> {user.fullName} </h4>
         {user.image && <img src={user.image}
@@ -47,6 +54,8 @@ function UserDetail(){
       <h4>Hobbies: {user.hobbies}</h4>
       <h4>interests: {user.interests}</h4>
       <Button like={likeUser} dislike={dislikeUser} />
+      </>
+}
     </div>
   )
 }
