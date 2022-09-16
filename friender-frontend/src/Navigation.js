@@ -32,7 +32,7 @@ function Navigation({ logout }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  console.log("current user in nav", currentUser)
+  console.log("current user in nav", currentUser);
   function loggedIn() {
     return (
       <>
@@ -41,22 +41,18 @@ function Navigation({ logout }) {
             activeclassname="active"
             tag={RRNavLink}>Users</NavLink>
         </NavItem>
-        {/* <NavItem>
-          <NavLink to="/jobs"
-            activeclassname="active"
-            tag={RRNavLink}>Jobs</NavLink>
-        </NavItem>
         <NavItem>
-          <NavLink to="/profile"
+          <NavLink to="/matches"
             activeclassname="active"
-            tag={RRNavLink}>Profile</NavLink>
-        </NavItem> */}
+            tag={RRNavLink}>Matches</NavLink>
+        </NavItem>
         <NavItem>
           <button
             className="nav-link"
             onClick={logout}>Log out, {currentUser.fullName}
           </button>
         </NavItem>
+
       </>
     );
   }

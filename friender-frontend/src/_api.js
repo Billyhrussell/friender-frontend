@@ -61,6 +61,12 @@ class FrienderApi {
     const resp = await this.request(`users/${username}/dislike`, {}, "post");
     return resp.message;
   }
+
+  /** Get all users */
+  static async getMatches() {
+    const resp = await this.request("matches");
+    return resp.matches;
+  }
 }
 
 export default FrienderApi;

@@ -20,7 +20,7 @@ function Homepage() {
       <br />
       <p>A place to make friends</p>
       {currentUser &&
-        <h2>Welcome Back, {currentUser.name}!</h2>}
+        <h2>Welcome Back, {currentUser.fullName}!</h2>}
       {!currentUser &&
         <div className="homepage-btn">
           <a href="/login" className="btn btn-primary me-3">Log In</a>

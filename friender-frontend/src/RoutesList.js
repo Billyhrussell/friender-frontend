@@ -2,10 +2,11 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import userContext from './userContext';
 import React, { useContext } from "react";
 import Homepage from './Homepage';
-import Login from './LoginForm'
-import Signup from './SignupForm'
+import Login from './LoginForm';
+import Signup from './SignupForm';
 import UserList from './UserList';
-import UserDetail from './UserDetail'
+import UserDetail from './UserDetail';
+import Matches from './Matches';
 
 /** Site-wide routes
  *
@@ -20,7 +21,7 @@ function RoutesList({ login, updateToken }) {
 
   return (
     <Routes>
-        <Route
+      <Route
         path="/"
         element={<Homepage />}
       />
@@ -43,16 +44,18 @@ function RoutesList({ login, updateToken }) {
         <>
           <Route
             path="/users"
-            element={<UserList/>}
-
+            element={<UserList />}
           />
 
           <Route
             path="/users/:username"
-            element={<UserDetail cantfind="/users"/>}
-
+            element={<UserDetail cantfind="/users" />}
           />
 
+          <Route
+            path="/matches"
+            element={<Matches />}
+          />
         </>
       }
 
