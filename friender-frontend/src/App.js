@@ -15,6 +15,7 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem(GLOBAL_TOKEN) || null);
   const [isLoading, setIsLoading] = useState(true);
 
+
   useEffect(function getCurrentUser() {
     async function getUser() {
       if (token) {
@@ -62,6 +63,9 @@ function App() {
     localStorage.removeItem(GLOBAL_TOKEN);
   }
 
+  async function updateToken(tokenData){
+    setToken(tokenData)
+  }
   async function signup(data) {
     try {
       let tokenData = await FrienderApi.signup(data);
@@ -79,7 +83,7 @@ function App() {
         <BrowserRouter>
           <Navigation logout={logout} />
           <div className="container">
-            <RoutesList login={login} signup={signup} />
+            <RoutesList login={login} updateToken={updateToken} />
           </div>
         </BrowserRouter>
       </div>

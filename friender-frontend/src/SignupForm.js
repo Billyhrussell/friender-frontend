@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 
 import userContext from "./userContext";
 
+const GLOBAL_TOKEN = "token";
 /** Form for adding.
  *
  * Props:
@@ -15,19 +16,20 @@ import userContext from "./userContext";
  * RoutesList -> SignUpForm
  */
 
-function SignupForm({ register }) {
+function SignupForm({ updateToken }) {
 
   const [selectedFile, setSelectedFile] = useState(null);
-  const { currentUser } = useContext(userContext);
+  // const { currentUser, setCurrentUser } = useContext(userContext);
   const initial =
-    { username: "",
+  {
+    username: "",
     password: "",
-    fullName:"",
+    fullName: "",
     hobbies: "",
-    interests:"",
-    zipcode:"",
-    radius:""
-  }
+    interests: "",
+    zipcode: "",
+    radius: ""
+  };
   const navigate = useNavigate();
   // const [file, setFile] = useState(null)
   const [fData, setfData] = useState(initial);
@@ -41,7 +43,7 @@ function SignupForm({ register }) {
       ...fData,
       [name]: value,
     }));
-// setFile(evt.target.files[0])
+    // setFile(evt.target.files[0])
   }
 
   /** Call parent function and clear form. */
@@ -51,14 +53,14 @@ function SignupForm({ register }) {
 
     const formData = new FormData();
 
-    formData.append("username", fData.username)
-    formData.append("password", fData.password)
-    formData.append("fullName", fData.fullName)
-    formData.append("hobbies", fData.hobbies)
-    formData.append("interests", fData.interests)
-    formData.append("zipcode", fData.zipcode)
-    formData.append("radius", fData.radius)
-    formData.append("image", selectedFile)
+    formData.append("username", fData.username);
+    formData.append("password", fData.password);
+    formData.append("fullName", fData.fullName);
+    formData.append("hobbies", fData.hobbies);
+    formData.append("interests", fData.interests);
+    formData.append("zipcode", fData.zipcode);
+    formData.append("radius", fData.radius);
+    formData.append("image", selectedFile);
 
     try {
       const response = await axios({
@@ -67,17 +69,22 @@ function SignupForm({ register }) {
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
-      setfData(initial)
-      setSelectedFile(null)
-      alert("Your account has been successfully created!")
-    } catch(error) {
-      console.log(error)
+      updateToken(response.data.token);
+      localStorage.setItem(GLOBAL_TOKEN, response.data.token)
+      setfData(initial);
+      setSelectedFile(null);
+      alert("Your account has been successfully created!");
+      navigate("/users");
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 
   const handleFileSelect = (event) => {
-    setSelectedFile(event.target.files[0])
-  }
+    setSelectedFile(event.target.files[0]);
+  };
+
+
 
 
   return (
@@ -86,7 +93,7 @@ function SignupForm({ register }) {
       <form className="SignUpForm" onSubmit={handleSubmit}>
 
         <div className="mb-3">
-        <label className="mb-2 label">Username</label>
+          <label className="mb-2 label">Username</label>
           <input
             id="username"
             name="username"
@@ -98,7 +105,7 @@ function SignupForm({ register }) {
           />
         </div>
         <div className="mb-3">
-        <label className="mb-2 label">Password</label>
+          <label className="mb-2 label">Password</label>
           <input
             id="password"
             name="password"
@@ -111,7 +118,7 @@ function SignupForm({ register }) {
           />
         </div>
         <div className="mb-3">
-        <label className="mb-2 label">Full Name</label>
+          <label className="mb-2 label">Full Name</label>
           <input
             id="fullName"
             name="fullName"
@@ -123,7 +130,7 @@ function SignupForm({ register }) {
           />
         </div>
         <div className="mb-3">
-        <label className="mb-2 label">Hobbies</label>
+          <label className="mb-2 label">Hobbies</label>
           <input
             id="hobbies"
             name="hobbies"
@@ -135,7 +142,7 @@ function SignupForm({ register }) {
           />
         </div>
         <div className="mb-3">
-        <label className="mb-2 label">Interests</label>
+          <label className="mb-2 label">Interests</label>
           <input
             id="interests"
             name="interests"
@@ -147,7 +154,7 @@ function SignupForm({ register }) {
           />
         </div>
         <div className="mb-3">
-        <label className="mb-2 label">Zipcode</label>
+          <label className="mb-2 label">Zipcode</label>
           <input
             id="zipcode"
             name="zipcode"
@@ -160,7 +167,7 @@ function SignupForm({ register }) {
         </div>
 
         <div className="mb-3">
-        <label className="mb-2 label">Radius</label>
+          <label className="mb-2 label">Radius</label>
           <input
             id="radius"
             name="radius"
@@ -173,7 +180,7 @@ function SignupForm({ register }) {
         </div>
 
         <div className="mb-3">
-        <label className="mb-2 label">Image</label>
+          <label className="mb-2 label">Image</label>
           <input
             id="image"
             name="image"
@@ -184,7 +191,7 @@ function SignupForm({ register }) {
             aria-label="Image"
           />
         </div>
-{/*
+        {/*
         {!isBadLogin &&
           <div className="alert alert-danger" role="alert">
             All fields must be filled out

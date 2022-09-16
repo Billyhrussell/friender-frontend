@@ -2,6 +2,7 @@ import {useParams } from 'react-router-dom'
 import {useEffect, useState} from 'react'
 import FrienderApi from './_api';
 import Loading from './Loading';
+import Button from './Button';
 
 function UserDetail(){
   const {username} = useParams();
@@ -20,6 +21,11 @@ function UserDetail(){
   },[username]);
 
 
+  async function likeUser(username){
+    await FrienderApi.likeOneUser(username);
+  }
+
+
   if (!user) return (<Loading />);
 
   return(
@@ -31,6 +37,7 @@ function UserDetail(){
 
       <h4>Hobbies: {user.hobbies}</h4>
       <h4>interests: {user.interests}</h4>
+      <Button username={username} like={() => likeUser} />
     </div>
   )
 }

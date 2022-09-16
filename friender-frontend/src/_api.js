@@ -33,9 +33,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
   }
 
   static async login(data){
-
     const resp = await this.request("login", data, "post");
-
     return resp.token;
   }
 
@@ -47,6 +45,11 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
   static async getOneUser(username){
     const resp = await this.request(`users/${username}`);
     return resp.user;
+  }
+
+  static async likeOneUser(username){
+    const resp = await this.request(`users/${username}/like`, {}, "post");
+    return resp.message
   }
 
  }

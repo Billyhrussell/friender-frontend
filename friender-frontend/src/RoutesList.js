@@ -8,7 +8,7 @@ import UserList from './UserList';
 import UserDetail from './UserDetail'
 
 
-function RoutesList({ login, signup }) {
+function RoutesList({ login, updateToken }) {
   const { currentUser } = useContext(userContext);
 
   return (
@@ -27,7 +27,7 @@ function RoutesList({ login, signup }) {
 
           <Route
             path="/signup"
-            element={<Signup register={signup} />}
+            element={<Signup updateToken={updateToken} />}
           />
         </>
       }
