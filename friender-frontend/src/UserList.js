@@ -21,21 +21,11 @@ function UserList() {
 
   console.log("INSIDE USER LIST")
   return (
+
     <div>
 
       <UserCardList users={users}/>
-      {/* {users.map(u => (
-        <UserCard
-          key={u.username}
-          username={u.username}
-          fullName={u.fullName}
-          hobbies={u.hobbies}
-          interests={u.interests}
-          zipcode={u.zipcode}
-          radius={u.radius}
-          image={u.image}
-          />
-        ))} */}
+
     </div>
 
   );

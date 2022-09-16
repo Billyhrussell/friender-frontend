@@ -1,12 +1,17 @@
 import UserCard from "./UserCard"
+import { Container, Row, Col } from "reactstrap";
+
 
 function UserCardList({ users }) {
   console.log("INSIDE USER CARD  LIST")
   return (
-    <div>
+
+    <Container>
+      <Row>
       {users.map(user =>
-        <UserCard key={user.username} user={user}  />)}
-    </div>
+        <Col ><UserCard key={user.username} user={user}  /></Col>)}
+        </Row>
+    </Container>
   );
 }
 

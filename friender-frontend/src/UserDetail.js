@@ -2,7 +2,7 @@ import {Navigate, useParams } from 'react-router-dom'
 import {useEffect, useState, useContext } from 'react'
 import FrienderApi from './_api';
 import Loading from './Loading';
-import Button from './Button';
+import SwipeButton from './SwipeButton';
 import { useNavigate } from "react-router-dom";
 import userContext from "./userContext";
 import {Card, CardBody, CardTitle, CardText} from 'reactstrap'
@@ -52,36 +52,50 @@ function UserDetail({cantfind}){
   if (!user && errors.length < 1) return (<Loading />);
 
   return(
-    <div>
+    <>
       {errors.length > 0
       ?
       <Navigate to={cantfind} />
       :
       <>
-      <Card>
-        <CardTitle className = 'cardTitle' tag='h5'>
+      <Card style={{
+          width: '80vh',
+          height: '80vh',
+          margin: '1rem',
+          padding: '0.5rem',
+          alignItems: "center",
+          backgroundColor: 'rgba(36, 28, 9, 0.33)'
+        }}>
+        <CardBody >
+        <CardTitle className = 'cardTitle' tag='h5'
+        style={{padding: '2rem'}}>
       <h2>{user.username}</h2>
       <h4> {user.fullName} </h4>
       </CardTitle>
-      <div className="image">
         {user.image && <img src={user.image}
-        alt = {user.fullName}/>}
-      </div>
+        alt = {user.fullName}
+        style={{
+          maxHeight: "50vh",
+          width: "auto",
+        }}/>}
 
-      <CardText className='cardText'>
-      <h4>Hobbies: {user.hobbies}</h4>
+      <CardText className='cardText'
+      style={{padding: '2rem'}}
+      >
+      <h4>Hobbies blahgkh garighi shgilhs ierlughsleuirg: {user.hobbies}</h4>
       <h4>interests: {user.interests}</h4>
       </CardText>
       {user.username !== currentUser.username
       ?
-      <Button like={likeUser} dislike={dislikeUser} />
+      <SwipeButton like={likeUser} dislike={dislikeUser} />
       :
       null
-      }
+    }
+    </CardBody>
       </Card>
       </>
 }
-    </div>
+    </>
   )
 }
 

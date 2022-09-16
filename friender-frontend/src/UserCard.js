@@ -15,6 +15,7 @@ function UserCard({ user }) {
           height: '14rem',
           margin: '1rem',
           padding: '0.5rem',
+          backgroundColor: 'rgba(36, 28, 9, 0.33)'
         }}>
         <CardBody>
           <CardTitle tag="h5">
@@ -25,7 +26,7 @@ function UserCard({ user }) {
             {image && <img src={image}
               alt={fullName}
                 style={{
-                maxHeight: "150px",
+                maxHeight: "10rem",
                 width: "100%",
               }}/>}
           </div>

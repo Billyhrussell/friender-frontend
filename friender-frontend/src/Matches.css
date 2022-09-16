@@ -23,7 +23,7 @@
 } */
 
 .oneCard{
-    background-color: rgba(255, 181, 7, 0.554);
+    background-color: rgba(36, 28, 9, 0.33);
     border-radius: 10px;
     margin: 20px;
     padding: 20px;
@@ -32,9 +32,10 @@
     flex-direction: column;
     align-content: center;
     align-items: center;
+    height: 20rem;
 }
 
-.img{
-    /* max-height: 150px; */
-    width: 100px;
+.image{
+    height: 10rem;
+    width: auto;
 }

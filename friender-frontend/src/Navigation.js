@@ -12,6 +12,7 @@ import {
 import { NavLink as RRNavLink } from 'react-router-dom';
 
 import userContext from './userContext';
+import "./Navigation.css"
 
 /** Displays Navigation bar with links to homepage and
  *  - when loggedIn: display link to show all users, link to logout

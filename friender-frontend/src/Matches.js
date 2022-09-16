@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 // import UserCardList from "./UserCardList";
 import FrienderApi from "./_api";
 import Loading from "./Loading";
-import {Card, CardBody, CardTitle, CardText} from 'reactstrap'
+import {Card, CardBody, CardTitle, CardText, CardSubtitle} from 'reactstrap'
 import './Matches.css'
 
 
@@ -25,20 +25,24 @@ function Matches() {
   ?
   users.map(u => (
     <Card className="oneCard">
+    <CardBody>
       <CardTitle className='cardTitle' tag="h5">
         {u.username}
       </CardTitle>
-
-      <div className='image' key={u.username}>
+      <CardSubtitle>
         {u.fullName}
+      </CardSubtitle>
+      <div  key={u.username}>
         {u.image && <img src={u.image}
-          alt={u.fullName} />}
+          alt={u.fullName}
+          className='image' />}
+      </div>
 
         <CardText className='cardText'>
           <h4>Hobbies: {u.hobbies}sssssssss</h4>
           <h4>interests: {u.interests}</h4>
         </CardText>
-      </div>
+      </CardBody>
     </Card>
     ))
     :
