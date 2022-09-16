@@ -5,6 +5,8 @@ import Loading from './Loading';
 import Button from './Button';
 import { useNavigate } from "react-router-dom";
 import userContext from "./userContext";
+import {Card, CardBody, CardTitle, CardText} from 'reactstrap'
+import './UserDetail.css'
 
 function UserDetail({cantfind}){
   const { currentUser } = useContext(userContext);
@@ -31,7 +33,7 @@ function UserDetail({cantfind}){
   async function likeUser(){
     const resp = await FrienderApi.likeOneUser(username);
     console.log("RESP", resp)
-  
+
     if (resp === "It's a match!") {
       alert ("It's a match!")
       navigate("/matches")
@@ -56,19 +58,27 @@ function UserDetail({cantfind}){
       <Navigate to={cantfind} />
       :
       <>
+      <Card>
+        <CardTitle className = 'cardTitle' tag='h5'>
       <h2>{user.username}</h2>
       <h4> {user.fullName} </h4>
+      </CardTitle>
+      <div className="image">
         {user.image && <img src={user.image}
         alt = {user.fullName}/>}
+      </div>
 
+      <CardText className='cardText'>
       <h4>Hobbies: {user.hobbies}</h4>
       <h4>interests: {user.interests}</h4>
+      </CardText>
       {user.username !== currentUser.username
       ?
       <Button like={likeUser} dislike={dislikeUser} />
       :
       null
       }
+      </Card>
       </>
 }
     </div>

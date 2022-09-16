@@ -1,0 +1,25 @@
+.oneCard{
+    background-color: rgba(255, 181, 7, 0.554);
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.img{
+    max-height: 150px;
+    /* /* width: 100px; */
+}
+
+button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width:200px;
+}
