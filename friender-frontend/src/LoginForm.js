@@ -33,7 +33,6 @@ function LoginForm({ login }) {
   /** Call parent function and clear form. */
   async function handleSubmit(evt) {
     evt.preventDefault();
-    debugger
     await login(formData);
     setFormData(initial);
     console.log("CURR USER:", currentUser);

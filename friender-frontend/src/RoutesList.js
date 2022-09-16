@@ -5,7 +5,7 @@ import Homepage from './Homepage';
 import Login from './LoginForm'
 import Signup from './SignupForm'
 import UserList from './UserList';
-import UserCard from './UserCard';
+import UserDetail from './UserDetail'
 
 
 function RoutesList({ login, signup }) {
@@ -40,8 +40,8 @@ function RoutesList({ login, signup }) {
           />
 
           <Route
-            path="/users"
-            element={<UserList/>}
+            path="/users/:username"
+            element={<UserDetail/>}
           />
 
         </>

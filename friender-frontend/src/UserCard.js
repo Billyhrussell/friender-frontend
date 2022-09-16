@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom"
 
-function UserCard({ username, fullName, hobbies, interests, zipcode, radius, image}){
+function UserCard({ user}){
+  const {username, fullName, hobbies, interests, zipcode, radius, image} = user;
+  console.log("INSIDE USER CARD")
+
+  console.log(username, fullName, hobbies, interests, zipcode, radius, image)
 
   return (
     <Link to={`/users/${username}`}>

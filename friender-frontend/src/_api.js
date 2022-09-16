@@ -26,14 +26,14 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
       console.error("API Error:", err.response);
-      debugger;
+
       let message = err.message;
       throw Array.isArray(message) ? message : [message];
     }
   }
 
   static async login(data){
-    debugger
+
     const resp = await this.request("login", data, "post");
 
     return resp.token;

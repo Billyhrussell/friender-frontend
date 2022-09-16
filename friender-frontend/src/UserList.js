@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import FrienderApi from "./_api";
 import Loading from "./Loading";
-import UserCard from "./UserCard";
+
+import UserCardList from "./UserCardList"
 
 function UserList() {
   const [users, setUsers] = useState(null);
@@ -16,9 +17,12 @@ function UserList() {
 
   if (!users) return <Loading />;
 
+  console.log("INSIDE USER LIST")
   return (
     <div>
-      {users.map(u => (
+
+      <UserCardList users={users}/>
+      {/* {users.map(u => (
         <UserCard
           key={u.username}
           username={u.username}
@@ -29,7 +33,7 @@ function UserList() {
           radius={u.radius}
           image={u.image}
           />
-        ))}
+        ))} */}
     </div>
 
   );

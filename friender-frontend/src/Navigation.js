@@ -29,34 +29,35 @@ function Navigation({ logout }) {
   const { currentUser } = useContext(userContext);
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-
-  // function loggedIn() {
-  //   return (
-  //     <>
-  //       <NavItem>
-  //         <NavLink to="/companies"
-  //           activeclassname="active"
-  //           tag={RRNavLink}>Companies</NavLink>
-  //       </NavItem>
-  //       <NavItem>
-  //         <NavLink to="/jobs"
-  //           activeclassname="active"
-  //           tag={RRNavLink}>Jobs</NavLink>
-  //       </NavItem>
-  //       <NavItem>
-  //         <NavLink to="/profile"
-  //           activeclassname="active"
-  //           tag={RRNavLink}>Profile</NavLink>
-  //       </NavItem>
-  //       <NavItem>
-  //         <button
-  //           className="nav-link"
-  //           onClick={logout}>Log out, {currentUser.firstName}
-  //         </button>
-  //       </NavItem>
-  //     </>
-  //   );
-  // }
+  
+  console.log("current user in nav", currentUser)
+  function loggedIn() {
+    return (
+      <>
+        <NavItem>
+          <NavLink to="/users"
+            activeclassname="active"
+            tag={RRNavLink}>Users</NavLink>
+        </NavItem>
+        {/* <NavItem>
+          <NavLink to="/jobs"
+            activeclassname="active"
+            tag={RRNavLink}>Jobs</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink to="/profile"
+            activeclassname="active"
+            tag={RRNavLink}>Profile</NavLink>
+        </NavItem> */}
+        <NavItem>
+          <button
+            className="nav-link"
+            onClick={logout}>Log out, {currentUser.fullName}
+          </button>
+        </NavItem>
+      </>
+    );
+  }
 
   function loggedOut() {
     return (
@@ -82,7 +83,7 @@ function Navigation({ logout }) {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto" navbar>
-            {/* {currentUser && loggedIn()} */}
+            {currentUser && loggedIn()}
             {!currentUser && loggedOut()}
           </Nav>
         </Collapse>
